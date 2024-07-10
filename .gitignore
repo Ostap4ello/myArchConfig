@@ -2,10 +2,12 @@
 *
 
 # but not these files...
+!readme.md
 !.gitignore
-!.bash*
 
 # configs...
+!.bash*
+
 !.config
 
 !.config/nvim
