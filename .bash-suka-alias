@@ -1,0 +1,33 @@
+#
+# .bash_aliases (pizdec edition)
+#
+
+# This file is sourced by .bashrc, and is used to store some aliases and functions
+
+
+alias neozhyd='neofetch'
+alias pidaras='ls -a'
+alias blyat='clear'
+alias zarzizeni='lsblk -l'
+
+alias jebash='cd'           #pizdui ..
+alias vpizdu='cd /'
+alias huynya='cd ~/.config/nvim; tree -a'
+alias huynya-projects='cd ~/Documents/VSCode/; ls -a -l'
+
+alias huesos='su'           #huesos admin
+alias suka='sudo'           #suka pacman -S pacman
+alias nahuy='exit'
+
+function pizdets() {
+    if [[ "$1" == "!" ]]; then
+        poweroff
+    else
+        reboot
+    fi
+}
+
+
+alias піздєц1='sudo systemctl suspend'
+alias піздєц2='sudo systemctl hibernate'
+alias піздєц3='sudo systemctl hybrid-sleep'
