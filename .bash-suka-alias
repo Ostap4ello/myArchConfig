@@ -12,7 +12,7 @@ alias zarzizeni='lsblk -l'
 
 alias jebash='cd'           #pizdui ..
 alias vpizdu='cd /'
-alias huynya='cd ~/.config/nvim; tree -a'
+alias huynya='cd ~/.config/nvim; nvim'
 alias huynya-projects='cd ~/Documents/VSCode/; ls -a -l'
 
 alias huesos='su'           #huesos admin
@@ -27,7 +27,73 @@ function pizdets() {
     fi
 }
 
+# alias isPutinHuylo='yes yes'
+function isPutinHuylo() {
+    myYesArr=("yes", "sure", "ano", "da", "zvisno")
+    while true; do
+        echo -n "${myYesArr[$RANDOM % ${#myYesArr[@]}]} "
+        sleep 0.01
+    done
+}
 
+
+# mounting/unmounting devices functions
+#
+# NOTE: name of mntpoint could be label
+#
+
+function pripizdosh() {
+    # if not enough args
+    if [ -z "$1" ]; then     #if no arguments (-z means zero length string)
+        lsblk -o name,mountpoint,label,size,uuid
+        echo "for help type 'pripizdosh help'"
+    elif [ -z "$2" ]; then
+        lsblk -o name,mountpoint,label,size,uuid | grep "$1"
+
+    # flags or custom commands
+    elif [[ "$1" == "help" ]]; then
+        echo "pripizdosh [device] [mountpoint] - mounts the device to the mountpoint"
+        echo "vidpizdozh [device] - unmounts the device"
+        echo "when no arguments are given, lists all devices"
+        echo "when only one argument is given, lists info about the device"
+
+    elif [ -e "$1" ]; then
+        mkdir -p "$2"
+        sudo mount -o umask=000 "$1" "$2"
+        echo "Mounted $1 to $2"
+
+    else
+        echo "No such device"
+    fi
+}
+
+
+function vidpizdosh() {
+    if [ -z "$1" ]; then     #if no arguments (-z means zero length string)
+        lsblk -o name,mountpoint,label,size,uuid
+        echo "for help type 'vidpizdosh help'"
+
+    # flags or custom commands
+    elif [[ "$1" == "help" ]]; then
+        echo "vidpizdozh [device] - unmounts the device"
+        echo "when no arguments are given, lists all devices"
+
+    elif [ -e "$1" ]; then
+        sudo umount "$1"
+        rmdir "$1"
+        echo "Unmounted $1"
+
+    else
+        echo "No such device"
+    fi
+}
+
+# NOTE: this is used to fix broken
+# colors of ls within mounted devices
+# think of something better
+alias mls="ls --color=never"
+
+# NOTE: explore possibilities
 alias піздєц1='sudo systemctl suspend'
 alias піздєц2='sudo systemctl hibernate'
 alias піздєц3='sudo systemctl hybrid-sleep'
