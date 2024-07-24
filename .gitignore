@@ -15,6 +15,9 @@
 !.config/lf
 !.config/lf/**
 
+#exclisions for theese
+.bash_history
+
 # !.config/<sth>
 # !.config/<sth>/**
 #
