@@ -10,10 +10,23 @@
 
 !.config
 
-!.config/nvim
-!.config/nvim/**
+!.config/hypr
+!.config/kitty
 !.config/lf
+!.config/neofetch
+!.config/nvim
+!.config/rofi
+!.config/swaync
+!.config/waybar
+
+!.config/hypr/**
+!.config/kitty/**
 !.config/lf/**
+!.config/neofetch/**
+!.config/nvim/**
+!.config/rofi/**
+!.config/swaync/**
+!.config/waybar/**
 
 #exclisions for theese
 .bash_history

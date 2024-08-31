@@ -14,6 +14,7 @@ alias jebash='cd'           #pizdui ..
 alias vpizdu='cd /'
 alias huynya='cd ~/.config/nvim; nvim'
 alias huynya-projects='cd ~/Documents/VSCode/; ls -a -l'
+alias huynya-conf='cd ~/.config/hypr/; nvim'
 
 alias huesos='su'           #huesos admin
 alias suka='sudo'           #suka pacman -S pacman

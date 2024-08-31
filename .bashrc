@@ -5,6 +5,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# enable bash completion in interactive shells
+if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+fi
+
 #utils
 alias ls='ls --color=auto'
 alias ll='ls -l -a --color=auto'
@@ -25,21 +34,19 @@ nvim'
 
 #apps
 alias firefox='/usr/lib/firefox/firefox --use-gl=desktop --enable-accelerated-video-decode --enable-accelerated-video-encode --enable-features=VaapiVideoDecoder --disable-features=UseChromeOSDirectVideoDecoder'
-alias settings='systemsettings'
-alias files='dolphin'
 
-lf () {
+lf() {
     # Define a temporary file to store the directory path
     tmpfile="$(mktemp)"
-    
+
     # Launch lf and store the last directory in the temporary file
-    "$HOME"/.config/lf/lf-ueberzug  -last-dir-path="$tmpfile"
-    
+    /usr/bin/lf -last-dir-path="$tmpfile"
+
     # Change to the last directory lf was in, if the file exists and is not empty
     if [ -f "$tmpfile" ] && [ "$(cat "$tmpfile")" != "" ]; then
         cd "$(cat "$tmpfile")"
     fi
-    
+
     # Clean up the temporary file
     rm -f "$tmpfile"
 }
@@ -47,40 +54,43 @@ lf () {
 #functions
 
 run() {
-       	"$@" & disown & exit 0
+    "$@" &
+    disown &
+    exit 0
 }
 
-resetX11(){
-	kwin_x11 --replace & disown & exit 0
+resetX11() {
+    kwin_x11 --replace &
+    disown &
+    exit 0
 }
 
-git-init-repo-usr(){
-	echo Enter folder name: 
+git-init-repo-usr() {
+    echo Enter folder name:
     read f_name
 
     mkdir $f_name
     cd $f_name
 
-	echo Enter repo ssh: 
+    echo Enter repo ssh:
     read repo_ssh
 
     git init
     git remote add origin $repo_ssh
 
-    echo Do sparse checkout? [y/N]: 
+    echo Do sparse checkout? [y/N]:
     read is_sparse
 
-	if [ "$is_sparse" == "y" ]; then
+    if [ "$is_sparse" == "y" ]; then
         git config core.sparseCheckout true
         echo List sparse folders: \(ctrl+C to finish listing\)
-        cat >> .git/info/sparse-checkout
+        cat >>.git/info/sparse-checkout
     fi
 
     cd ..
 
     echo Done.
 }
-
 
 #export EDITOR='vim'
 #export VISUAL='vim'

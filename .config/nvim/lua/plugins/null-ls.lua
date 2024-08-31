@@ -17,6 +17,22 @@ return {
 				extra_args = { "-style={BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, UseTab: ForIndentation}" },
 			}),
 
+			null_ls.builtins.formatting.shfmt.with({
+				extra_args = { "-i", "4", "-ci" },
+			}),
+
+			null_ls.builtins.formatting.prettier.with({
+				filetypes = {
+					"javascript",
+					"typescript",
+					"javascriptreact",
+					"typescriptreact",
+					-- "json",
+					"yaml",
+					"markdown",
+				},
+			}),
+			null_ls.builtins.formatting.jq,
 			-- null_ls.builtins.formatting.black,
 			-- null_ls.builtins.formatting.prettier.with({
 			-- 	prefer_local = "node_modules/.bin",

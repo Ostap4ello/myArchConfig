@@ -75,7 +75,5 @@ return {
 				},
 			},
 		})
-
-		require("nvim-tree.api").tree.open()
 	end,
 }
