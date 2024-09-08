@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 # enable bash completion in interactive shells
+# https://github.com/scop/bash-completion
 if ! shopt -oq posix; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion

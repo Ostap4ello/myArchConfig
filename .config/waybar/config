@@ -10,7 +10,7 @@
     "margin-left": 10,
     "margin-right": 10,
 
-    "modules-left": [ "clock" ],
+    "modules-left": [ "clock", "hyprland/language" ],
     "modules-center": [ /*"hyprland/mode",*/ "hyprland/workspaces", ],
     "modules-right": [ "cpu", "memory", "pulseaudio", "network", "battery", ],
 
@@ -20,16 +20,28 @@
         "disable-scroll": true,
         "all-outputs": true,
         // "format": "{name}: {icon}",
-        // "format-icons": {
+        "format": "{icon}",
+        "format-icons": {
         //     "1": "",
         //     "2": "",
         //     "3": "",
         //     "4": "",
         //     "5": "",
-        //     "urgent": "",
-        //     "focused": "",
-        //     "default": ""
-        // }
+            "urgent": "",
+            "focused": "",
+            "active": "",
+            "default": "",
+            "empty": "·",
+        },
+        "persistent-workspaces": {
+            "*": 10,
+        }
+    },
+    "hyprland/language": {
+        "format": "| <span font_size='10pt'>{}</span>",
+        "format-en": "Splendid, sluuurp",
+        "format-uk": "Nejřmoviřní (yo yo)",
+        "format-cs": "База, база, їбать",
     },
 
     "hyprland/mode": {
@@ -163,13 +175,13 @@
 
     "network": {
         //"interface": "enp0n25", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-wifi": "{essid}  ",
         "format-ethernet": "{ifname}  ",
         "format-linked": "{ifname} (No IP)  !",
         "format-disconnected": "  !",
         "on-click-right": "kitty --start-as normal bash -ci nmtui",
         //"on-click": "kitty --start-as normal bash -ci what",
-        "format-alt": "<span font_size='6pt'>{ifname}\n{ipaddr}/{cidr}</span>",
+        "format-alt": "<span font_size='6pt'>{ifname} (strength: {signalStrength}%)\n{ipaddr}/{cidr}</span>",
     },
 
     "custom/vpn":{

@@ -18,6 +18,7 @@
 !.config/rofi
 !.config/swaync
 !.config/waybar
+!.config/dunst
 
 !.config/hypr/**
 !.config/kitty/**
@@ -27,6 +28,7 @@
 !.config/rofi/**
 !.config/swaync/**
 !.config/waybar/**
+!.config/dunst/**
 
 #exclisions for theese
 .bash_history
