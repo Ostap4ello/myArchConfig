@@ -26,12 +26,11 @@ case "$choice" in
     grim -g "$at $size" - | swappy -f -
     ;;
 2)
+    notify-send choose display
     echo grim -t png -g "$(slurp -o)" - | swappy -f -
     ;;
 3)
     grim -t png - | swappy -f -
     ;;
-*)
-    notify-send "u somehow managed to select something else"
-    ;;
+*) ;;
 esac

@@ -16,7 +16,6 @@
 !.config/neofetch
 !.config/nvim
 !.config/rofi
-!.config/swaync
 !.config/waybar
 !.config/dunst
 
@@ -26,10 +25,14 @@
 !.config/neofetch/**
 !.config/nvim/**
 !.config/rofi/**
-!.config/swaync/**
 !.config/waybar/**
 !.config/dunst/**
 
+!.local
+!.local/share
+!.local/share/rofi
+!.local/share/rofi/themes
+!.local/share/rofi/themes/**
 #exclisions for theese
 .bash_history
 
