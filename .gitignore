@@ -34,7 +34,7 @@
 !.local/share/rofi/themes
 !.local/share/rofi/themes/**
 #exclisions for theese
-.bash_history
+.bash_history*
 
 # !.config/<sth>
 # !.config/<sth>/**

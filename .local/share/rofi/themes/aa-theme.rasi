@@ -19,6 +19,11 @@
     spacing:    0;
 }
 
+mainbox {
+    padding: 0;
+    background-color: @bg0;
+}
+
 window {
     location:   center;
     width:      500;
@@ -28,6 +33,11 @@ window {
     border-color: @fg0;
 
     background-color:   @bg0;
+}
+
+message {
+    padding: 0;
+    background-color: @bg0;
 }
 
 inputbar {

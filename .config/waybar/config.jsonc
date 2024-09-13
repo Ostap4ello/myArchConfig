@@ -1,6 +1,6 @@
 {
     // General
-    //"layer": "top",
+    "layer": "top",
     "position": "bottom", // top|bottom|left|right
     "gtk-layer-shell": true,
     "height": "12pt",
@@ -10,9 +10,9 @@
     "margin-left": 10,
     "margin-right": 10,
 
-    "modules-left": [ "clock", "hyprland/language" ],
-    "modules-center": [ /*"hyprland/mode",*/ "hyprland/workspaces", ],
-    "modules-right": [ "cpu", "memory", "pulseaudio", "network", "battery", ],
+    "modules-left": [ "custom/clock", "custom/separator", "custom/hints", "custom/separator", "hyprland/language" ],
+    "modules-center": [ "hyprland/workspaces" ],
+    "modules-right": [ "cpu", "memory", "pulseaudio", "network", "battery" ],
 
     // Modules configuration
 
@@ -31,32 +31,21 @@
             "focused": "",
             "active": "",
             "default": "",
-            "empty": "·",
+            "empty": "·"
         },
         "persistent-workspaces": {
-            "*": 10,
+            "*": 10
         }
     },
     "hyprland/language": {
-        "format": "| <span font_size='10pt'>{}</span>",
+        "format": "<span font_size='10pt'>{}</span>",
         "format-en": "Splendid, sluuurp",
         "format-uk": "Nejřmoviřní (yo yo)",
-        "format-cs": "База, база, їбать",
+        "format-cs": "База, база, їбать"
     },
 
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
-    },
-
-    "custom/spotify": {
-        "format": "{icon} {}   ",
-        "escape": true,
-        "return-type": "json",
-        "max-length": 40,
-        "on-click": "playerctl -p spotify play-pause",
-        "on-click-right": "killall spotify",
-        "exec": "$HOME/.config/waybar/modules/mediaplayer.py --player spotify 2> /dev/null",
-        "exec-if": "pgrep spotify",
     },
 
     "mpd": {
@@ -106,18 +95,18 @@
     },
 
     "clock": {
-        "timezone": "Europe/Prague",
+        "timezone": "",
         "format": "{:%H:%M:%S | %a, %b %d %C%y}",
         "format-alt": "{:%H:%M:%S %Z %a, %b %d %C%y}",
         "tooltip": false,
         "on-click-right": "gsimplecal",
-        "interval": 1,
+        "interval": 1
     },
 
     "cpu": {
         "format": "{usage}%  ",
         "on-click": "alacritty -e bash -ci htop --sort-key PERCENT_CPU",
-        "interval": 1,
+        "interval": 1
     },
 
     "memory": {
@@ -141,36 +130,19 @@
     },
 
     "battery": {
-        "format": "{icon}{capacity}% - {time}",
+        "format": "{icon}{capacity}%", // - {time}",
+        "format-alt": "{icon}{capacity}% - {time}",
         "format-icons": [" ", " ", " ", " ", " "],
         "format-time": "{H}h{M}m",
         "format-charging": " {icon}{capacity}%", // - {time}",
         "format-full": " {icon}",
-        "interval": 30,
+        "interval": 10,
         "states": {
             "warning": 25,
             "critical": 10
         },
         "tooltip": false,
         // "on-click": "2"
-    },
-
-    // % calculated based on (!!) design capacity:
-    // upower -i /org/freedesktop/UPower/devices/battery_BAT0
-    "custom/bat0": {
-        "states": {
-            "good": 95,
-            "warning": 15,
-            "critical": 10
-        },
-        "exec": "~/.config/waybar/modules/battery.py BAT0",
-        // todo: exec-if not working script gets restarted when reloading sway
-        // "exec-if": "[ $(pgrep battery.py | wc -l) -lt 1 ]",
-        "return-type": "json",
-        "format": "{} {percentage}% {icon}",
-        "format-icons": [" ", " ", " ", " ", " "],
-        "tooltip": false,
-        "on-click-right": "kitty --start-as normal bash -i bat",
     },
 
     "network": {
@@ -181,16 +153,7 @@
         "format-disconnected": "  !",
         "on-click-right": "kitty --start-as normal bash -ci nmtui",
         //"on-click": "kitty --start-as normal bash -ci what",
-        "format-alt": "<span font_size='6pt'>{ifname} (strength: {signalStrength}%)\n{ipaddr}/{cidr}</span>",
-    },
-
-    "custom/vpn":{
-        "format": "vpn {icon}",
-        "tooltip-format": "{icon}",
-        "exec": "~/.config/waybar/modules/vpn",
-        "return-type": "json",
-        "interval": 5,
-        "format-icons": [" "," "]
+        "format-alt": "<span font_size='6pt'>{ifname} (strength: {signalStrength}%)\n{ipaddr}/{cidr}</span>"
     },
 
     "pulseaudio": {
@@ -216,26 +179,6 @@
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
 
-    "custom/kbd": {
-        "format": "{}",
-        //"format-alt": "{alt}: {}",
-        //"format-alt-click": "click-left",
-        "return-type": "json",
-        "exec": "$HOME/.config/waybar/modules/kbd_indicator"
-    },
-
-    "custom/covid": {
-        "exec": "~/bin/covid_waybar -c 'Italy' -L -D -N",
-        //"exec-on-event": false,
-        "return-type": "json",
-        "interval": 300,
-        "format": "{} {icon}",
-        "format-icons": [" "],
-        //"exec-if": "ping covid.ourworldindata.org -c1",
-        //"on-click-right": "alacritty -e bash -i ~/bin/covid_status -c 'Austria' -L -D -N -f gplotpdf",
-        "on-click-right": "alacritty -e bash -i ~/bin/covid_longformat -c 'Austria' -L -D -N -l",
-        "on-click": "~/bin/covid_dbus -c 'Austria' -L -D -N -d"
-    },
 
     "bluetooth": {
         "format": "{icon}",
@@ -246,6 +189,65 @@
             "disabled": ""
         },
         "tooltip-format": "{status}"
+    },
+
+    // CUSTOM MODULES
+
+    "custom/separator": {
+    "format":"|"
+    },
+
+    "custom/hints": {
+        "format": "?",
+        "on-click": "exec ~/.config/hypr/scripts/info.bash"
+        //"" I need some popup with text which can be tiled also
+    },
+
+    "custom/todo": {},
+
+    // % calculated based on (!!) design capacity:
+    // upower -i /org/freedesktop/UPower/devices/battery_BAT0
+    "custom/bat0": {
+        "states": {
+            "good": 95,
+            "warning": 15,
+            "critical": 10
+        },
+        "exec": "~/.config/waybar/modules/battery.py BAT0",
+        // todo: exec-if not working script gets restarted when reloading sway
+        // "exec-if": "[ $(pgrep battery.py | wc -l) -lt 1 ]",
+        "return-type": "json",
+        "format": "{} {percentage}% {icon}",
+        "format-icons": [" ", " ", " ", " ", " "],
+        "tooltip": false,
+        "on-click-right": "kitty --start-as normal bash -i bat"
+    },
+
+    "custom/vpn":{
+        "format": "vpn {icon}",
+        "tooltip-format": "{icon}",
+        "exec": "~/.config/waybar/modules/vpn",
+        "return-type": "json",
+        "interval": 5,
+        "format-icons": [" "," "]
+    },
+
+    "custom/spotify": {
+        "format": "{icon} {}   ",
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "killall spotify",
+        "exec": "$HOME/.config/waybar/modules/mediaplayer.py --player spotify 2> /dev/null",
+        "exec-if": "pgrep spotify"
+    },
+
+    "custom/clock": {
+        "exec": "date +'%H:%M:%S | %a, %b %d, %Y'",
+        "interval": 1,
+        "tooltip": false,
+        "on-click": "alacritty -e 'calcurse'"
     },
 
     "custom/weather": {

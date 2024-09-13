@@ -77,3 +77,8 @@ end, {})
 
 --vim.keymap.set('i', '<C-Tab>', '<Plug>(copilot-accept-word)')
 vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
+
+vim.keymap.set({ "n", "t" }, "<A-left>", "<c-w><left>")
+vim.keymap.set({ "n", "t" }, "<A-right>", "<c-w><right>")
+vim.keymap.set({ "n", "t" }, "<A-up>", "<c-w><up>")
+vim.keymap.set({ "n", "t" }, "<A-down>", "<c-w><down>")
