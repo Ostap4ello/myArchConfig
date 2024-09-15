@@ -21,11 +21,13 @@ case "$choice" in
     systemctl poweroff
     ;;
 2)
-    systemctl hibernate &
-    hyprlock
+    hyprlock &
+    disown && systemctl hibernate
+
     ;;
 3)
-    systemctl suspend
+    hyprlock &
+    disown && systemctl suspend
     ;;
 4)
     hyprlock

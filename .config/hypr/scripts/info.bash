@@ -1,31 +1,5 @@
 #!/bin/sh
 
-info="binds
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ye"
-
-rofi -e "$info" -theme ~/.local/share/rofi/themes/aa-theme.rasi
+rofi \
+    -theme-str '* {font: "JuliaMono 8";}' \
+    -e "$(cat ~/.config/hypr/scripts/hints.txt)"
