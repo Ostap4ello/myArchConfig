@@ -13,20 +13,20 @@
 }
 
 window#waybar {
-    background-color: #000000;
+    background-color: transparent;
 
     margin-bottom: 10px;
 }
 
 #workspaces button {
-    background-color: #000000;
+    background-color: transparent;
     padding: 0;
     margin: 0;
     border-radius: 0px;
 }
 
 #workspaces button:hover {
-    background-color: #000000;
+    background-color: transparent;
     border-radius: 0;
 }
 

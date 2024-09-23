@@ -12,7 +12,7 @@
 
     "modules-left": [ "custom/clock", "custom/separator", "custom/hints", "custom/separator", "hyprland/language" ],
     "modules-center": [ "hyprland/workspaces" ],
-    "modules-right": [ "cpu", "memory", "pulseaudio", "network", "battery" ],
+    "modules-right": [ "tray", "cpu", "memory", "pulseaudio", "network", "battery" ],
 
     // Modules configuration
 

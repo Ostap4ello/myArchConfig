@@ -4,7 +4,6 @@
 
 # This file is sourced by .bashrc, and is used to store some aliases and functions
 
-
 alias neozhyd='neofetch'
 alias pidaras='ls -a'
 alias blyat='clear'
