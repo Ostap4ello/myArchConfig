@@ -33,8 +33,11 @@
 !.local/share/rofi
 !.local/share/rofi/themes
 !.local/share/rofi/themes/**
+
 #exclisions for theese
 .bash_history*
+.config/hypr/monitors.conf
+
 # !.config/<sth>
 # !.config/<sth>/**
 #
