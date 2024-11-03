@@ -10,7 +10,7 @@
     "margin-left": 10,
     "margin-right": 10,
 
-    "modules-left": [ "custom/clock", "custom/separator", "custom/hints", "custom/separator", "hyprland/language" ],
+    "modules-left": [ "custom/appmenu", "custom/clock",/* "custom/separator", "custom/hints",*/ "custom/separator", "hyprland/language" ],
     "modules-center": [ "hyprland/workspaces" ],
     "modules-right": [ "tray", "cpu", "memory", "pulseaudio", "network", "battery" ],
 
@@ -30,17 +30,18 @@
             "urgent": "",
             "focused": "",
             "active": "",
-            "default": "",
-            "empty": "·"
+            "default": "",
+            "empty": ""
         },
         "persistent-workspaces": {
-            "*": 10
-        }
+            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, "special:magic"]
+        },
+        "show-special": true,
     },
     "hyprland/language": {
         "format": "<span font_size='10pt'>{}</span>",
         "format-en": "Splendid, sluuurp",
-        "format-uk": "Nejřmoviřní (yo yo)",
+        "format-uk": "Nejřmoviřní",
         "format-cs": "База, база, їбать"
     },
 
@@ -130,11 +131,11 @@
     },
 
     "battery": {
-        "format": "{icon}{capacity}%", // - {time}",
-        "format-alt": "{icon}{capacity}% - {time}",
+        "format": "{icon} {capacity}%", // - {time}",
+        "format-alt": "{icon} {capacity}% - {time}",
         "format-icons": [" ", " ", " ", " ", " "],
         "format-time": "{H}h{M}m",
-        "format-charging": " {icon}{capacity}%", // - {time}",
+        "format-charging": " {icon} {capacity}%",  // - {time}",
         "format-full": " {icon}",
         "interval": 10,
         "states": {
@@ -200,10 +201,15 @@
     "custom/hints": {
         "format": "?",
         "on-click": "exec ~/.config/hypr/scripts/info.bash"
-        //"" I need some popup with text which can be tiled also
+        // NOTE: I need some popup with text which can be tiled also
     },
 
     "custom/todo": {},
+
+    "custom/appmenu": {
+        "format": "󰣇 ",
+        "on-click": "rofi -show drun"
+    },
 
     // % calculated based on (!!) design capacity:
     // upower -i /org/freedesktop/UPower/devices/battery_BAT0
