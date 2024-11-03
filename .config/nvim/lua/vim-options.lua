@@ -53,32 +53,17 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 --vim.opt.formatoptions = "" TODO: <-
 
+-- Wrap for different filetypes
 vim.opt.wrap = false
+vim.opt.linebreak = false
 
--- Shortcuts-opts
-vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", {}) --TODO: <-
--- vim.keymap.set("n", "<leader>b", ":Neotree", {})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "txt", "me" },
+	command = "set linebreak wrap",
+})
 
--- vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-
-vim.cmd("command! WQ wa | qa")
-
-vim.api.nvim_create_user_command("Dterm", function()
-	vim.cmd("vertical terminal")
-	vim.cmd("wincmd J")
-	vim.cmd("wincmd 99 -")
-	vim.cmd("wincmd 7 +")
-	vim.cmd("vertical terminal")
-end, {})
-
-vim.api.nvim_create_user_command("Tab", function()
-	vim.cmd("vertical new")
-end, {})
-
---vim.keymap.set('i', '<C-Tab>', '<Plug>(copilot-accept-word)')
-vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
-
-vim.keymap.set({ "n", "t" }, "<A-left>", "<c-w><left>")
-vim.keymap.set({ "n", "t" }, "<A-right>", "<c-w><right>")
-vim.keymap.set({ "n", "t" }, "<A-up>", "<c-w><up>")
-vim.keymap.set({ "n", "t" }, "<A-down>", "<c-w><down>")
+-- Set the commentstring for C and C++ files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "c", "cpp" },
+	command = "setlocal commentstring=//\\ %s",
+})
