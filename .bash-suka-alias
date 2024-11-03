@@ -1,22 +1,26 @@
+#!/bin/bash
+
 #
-# .bash_aliases (pizdec edition)
+# ~/.bash_aliases (pizdec edition)
 #
 
 # This file is sourced by .bashrc, and is used to store some aliases and functions
+
+alias да='echo "вінда"; sleep 1; echo "Нєхуй тут lf українською писати, дебіл"; sleep 1; echo "..."; sleep 1'
 
 alias neozhyd='neofetch'
 alias pidaras='ls -a'
 alias blyat='clear'
 alias zarzizeni='lsblk -l'
 
-alias jebash='cd'           #pizdui ..
+alias jebash='cd' #pizdui ..
 alias vpizdu='cd /'
 alias huynya='cd ~/.config/nvim; nvim'
 alias huynya-projects='cd ~/Documents/VSCode/; ls -a -l'
 alias huynya-conf='cd ~/.config/hypr/; nvim'
 
-alias huesos='su'           #huesos admin
-alias suka='sudo'           #suka pacman -S pacman
+alias huesos='su' #huesos admin
+alias suka='sudo' #suka pacman -S pacman
 alias nahuy='exit'
 
 function pizdets() {
@@ -36,7 +40,6 @@ function isPutinHuylo() {
     done
 }
 
-
 # mounting/unmounting devices functions
 #
 # NOTE: name of mntpoint could be label
@@ -44,11 +47,19 @@ function isPutinHuylo() {
 
 function pripizdosh() {
     # if not enough args
-    if [ -z "$1" ]; then     #if no arguments (-z means zero length string)
+    device="$1"
+    mntfolder="$2"
+
+    if [[ "${mntfolder: -1}" == "/" ]]; then
+        mntfolder="${mntfolder::-1}"
+    fi
+
+    if [ -z "1" ]; then #if no arguments (-z means zero length string)
         lsblk -o name,mountpoint,label,size,uuid
+        echo ""
         echo "for help type 'pripizdosh help'"
-    elif [ -z "$2" ]; then
-        lsblk -o name,mountpoint,label,size,uuid | grep "$1"
+    elif [ -z "$mntfolder" ]; then
+        lsblk -o path,mountpoint,label,size,uuid | grep "$1"
 
     # flags or custom commands
     elif [[ "$1" == "help" ]]; then
@@ -58,19 +69,29 @@ function pripizdosh() {
         echo "when only one argument is given, lists info about the device"
 
     elif [ -e "$1" ]; then
-        mkdir -p "$2"
-        sudo mount -o umask=000 "$1" "$2"
-        echo "Mounted $1 to $2"
+        devfolder="$(
+            lsblk -o path,name,label |
+                grep "$device" |
+                awk '{print $2, "-", $3}' |
+                sed 's/[^a-zA-Z0-9-]//g'
+        )"
 
+        if [[ "${devfolder: -1}" == "-" ]]; then
+            mntfolder="${devfolder::-1}"
+        fi
+
+        mkdir -p "$mntfolder/$devfolder" &&
+            sudo mount -o umask=000 "$device" "$mntfolder/$devfolder" &&
+            echo "Mounted $device to $mntfolder/$devfolder"
     else
         echo "No such device"
     fi
 }
 
-
 function vidpizdosh() {
-    if [ -z "$1" ]; then     #if no arguments (-z means zero length string)
+    if [ -z "$1" ]; then #if no arguments (-z means zero length string)
         lsblk -o name,mountpoint,label,size,uuid
+        echo ""
         echo "for help type 'vidpizdosh help'"
 
     # flags or custom commands
@@ -79,9 +100,9 @@ function vidpizdosh() {
         echo "when no arguments are given, lists all devices"
 
     elif [ -e "$1" ]; then
-        sudo umount "$1"
-        rmdir "$1"
-        echo "Unmounted $1"
+        sudo umount "$1" &&
+            rmdir "$1" &&
+            echo "Unmounted $1"
 
     else
         echo "No such device"

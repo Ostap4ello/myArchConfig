@@ -20,15 +20,16 @@ alias ls='ls --color=auto'
 alias ll='ls -l -a --color=auto'
 alias grep='grep --color=auto'
 
+alias icat='kitty +kitten icat'
+
 alias py='python'
 alias manual='man --locale=uk'
 alias docker-compose='docker compose'
+alias btcli='bluetoothctl'
 
 #directories
-alias cdvs='cd ~/Documents/VSCode/
-tree -d -L 2'
-alias cdnv='cd ~/.config/nvim/
-nvim'
+alias cdcd='cd ~/Workspace/ ; tree -d -L 2'
+alias cdnv='cd ~/.config/nvim/ ; nvim'
 
 #provide console with crazy aliases
 [[ -f ~/.bash-suka-alias ]] && . ~/.bash-suka-alias
