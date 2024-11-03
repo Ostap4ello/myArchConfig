@@ -5,29 +5,29 @@ return {
 	-- 	-- 	require("zenbones").setup()
 	-- 	-- end,
 	-- },
-	{
-		"AlexvZyl/nordic.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("nordic").setup({
-				override = {
-					-- Normal = {
-					-- 	bg = "#1d1f21",
-					-- },
-					-- ColorColumn = {
-					-- 	bg = "#363a41",
-					-- },
-					-- LspReferenceText = { bg = "#3b4252" }, -- values and text
-					LspReferenceRead = { bg = "#3b4252" }, -- calls etc
-					LspReferenceWrite = { bg = "#3b4252" }, -- declarations etc
-					MatchParen = {
-						bg = "#3b4252",
-					},
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"AlexvZyl/nordic.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("nordic").setup({
+	-- 			override = {
+	-- 				-- Normal = {
+	-- 				-- 	bg = "#1d1f21",
+	-- 				-- },
+	-- 				-- ColorColumn = {
+	-- 				-- 	bg = "#363a41",
+	-- 				-- },
+	-- 				-- LspReferenceText = { bg = "#3b4252" }, -- values and text
+	-- 				LspReferenceRead = { bg = "#3b4252" }, -- calls etc
+	-- 				LspReferenceWrite = { bg = "#3b4252" }, -- declarations etc
+	-- 				MatchParen = {
+	-- 					bg = "#3b4252",
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"nyoom-engineering/oxocarbon.nvim",
 		-- Add in any other configuration;
