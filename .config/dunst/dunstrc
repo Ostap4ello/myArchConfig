@@ -90,10 +90,10 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    padding = 10
 
     # Horizontal padding.
-    horizontal_padding = 5
+    horizontal_padding = 20
 
     # Padding between text and icon.
     text_icon_padding = 0
@@ -136,7 +136,7 @@
 
     ### Text ###
 
-    font = JuliaMono 12
+    font = CaskaydiaCove Nerd Font 11
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -176,7 +176,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%a</b>\n%s\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -211,6 +211,7 @@
 
     # Recursive icon lookup. You can set a single theme, instead of having to
     # define all lookup paths.
+    # enable_recursive_icon_lookup = true
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
@@ -219,7 +220,7 @@
     # icon_theme = "Adwaita, breeze"
 
     # Align icons left/right/top/off
-    icon_position = left
+    icon_position = none
 
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
@@ -227,7 +228,7 @@
     min_icon_size = 32
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 128
+    max_icon_size = 32
 
     # Paths to default icons (only necessary when not using recursive icon lookup)
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
