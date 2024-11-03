@@ -17,9 +17,9 @@ return {
 			api.config.mappings.default_on_attach(bufnr)
 
 			-- custom mappings
-			--vim.keymap.set('n', '<left>',	api.tree.change_root_to_parent,											opts('Up'))
-			--vim.keymap.set('n', '<right>',  api.tree.change_root_to_node,					opts('CD'))
-			--vim.keymap.set('n', '<left>',	api.tree.change_root_to_parent,        opts('Up'))
+			--vim.keymap.set('n', '<left>',	api.tree.change_root_to_parent, opts('Up'))
+			--vim.keymap.set('n', '<right>',  api.tree.change_root_to_node, opts('CD'))
+			--vim.keymap.set('n', '<left>',	api.tree.change_root_to_parent, opts('Up'))
 			vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 
 			-- Override color groups

@@ -13,9 +13,9 @@ return {
 		local sources = {
 			null_ls.builtins.diagnostics.flake8,
 
-			null_ls.builtins.formatting.clang_format.with({
-				extra_args = { "-style={BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, UseTab: ForIndentation}" },
-			}),
+			-- null_ls.builtins.formatting.clang_format.with({
+			-- 	extra_args = { "-style={BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, UseTab: ForIndentation}" },
+			-- }),
 
 			null_ls.builtins.formatting.shfmt.with({
 				extra_args = { "-i", "4", "-ci" },
