@@ -5,7 +5,7 @@
  *******************************************************************************/
 
 * {
-    font:   "JuliaMono 12";
+    font:   "CaskaydiaCove Nerd Font 12";
 
     bg0:     rgba(0,0,0,1);
     fg0:     rgba(200, 200, 200, 0.9);
@@ -49,7 +49,7 @@ inputbar {
 
 prompt, textbox-prompt-colon { 
     text-color: @fg0;
-    font: "JuliaMono 10";
+    font: "CaskaydiaCove Nerd Font 10";
     vertical-align: 1;
 }
 
