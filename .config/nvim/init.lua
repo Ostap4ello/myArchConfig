@@ -13,6 +13,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("vim-options")
+require("vim-binds-native")
 require("lazy").setup("plugins")
+
+-- commands to run for user
 vim.cmd.colorscheme("oxocarbon")
--- require("nvim-tree.api").tree.open()
+
+-- open nvim-tree on startup if no file is provided
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argc() == 0 then
+			require("nvim-tree.api").tree.open()
+		end
+	end,
+})
+-- instead of: require("nvim-tree.api").tree.open()
