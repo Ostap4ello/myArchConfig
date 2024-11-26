@@ -8,6 +8,8 @@
 
 alias да='echo "вінда"; sleep 1; echo "Нєхуй тут lf українською писати, дебіл"; sleep 1; echo "..."; sleep 1'
 
+alias kclone="kitty & disown"
+
 alias neozhyd='neofetch'
 alias pidaras='ls -a'
 alias blyat='clear'

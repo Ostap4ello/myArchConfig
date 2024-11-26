@@ -32,7 +32,9 @@ end, {} )
 --vim.keymap.set('i', '<C-Tab>', '<Plug>(copilot-accept-word)')
 vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
 
--- Alt + T to move to the next tab
+--Alt + T to open terminal in a new tab
+vim.keymap.set({ "n", "v" }, "<leader>T", ":tabnew<CR>:terminal<CR>")
+-- Alt + t to move to the next tab
 vim.keymap.set({ "n", "v" }, "<A-t>", "<c-w>T")
 vim.keymap.set("t", "<A-t>", "<c-\\><c-n><c-w>T")
 -- Alt + Arrows to move focus between windows in normal, terminal and visual mode

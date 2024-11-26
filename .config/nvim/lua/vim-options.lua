@@ -58,8 +58,8 @@ vim.opt.wrap = false
 vim.opt.linebreak = false
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "txt", "me" },
-	command = "set linebreak wrap",
+	pattern = "text",
+	command = "setlocal linebreak wrap",
 })
 
 -- Set the commentstring for C and C++ files

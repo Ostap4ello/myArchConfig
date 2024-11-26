@@ -4,6 +4,9 @@ return {
 		event = "InsertEnter",
 		dependencies = {
 			{
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-calc",
+				"octaltree/cmp-look",
 				"L3MON4D3/LuaSnip",
 				build = (function()
 					-- Build Step is needed for regex support in snippets.
@@ -66,7 +69,7 @@ return {
 					-- you can uncomment the following lines
 					--['<CR>'] = cmp.mapping.confirm { select = true },
 					--['<Tab>'] = cmp.mapping.select_next_item(),
-					--['<S-Tab>'] = cmp.mapping.select_prev_item(),
+					--['<S-Tab>'] = cmp.mapping.select_prev_item(), for each
 
 					-- Manually trigger a completion from nvim-cmp.
 					["<C-Space>"] = cmp.mapping.complete({}),
@@ -86,10 +89,13 @@ return {
 					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				}),
 				sources = {
-					{ name = "copilot" },
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-					{ name = "path" },
+					{ name = "copilot", priority = 8 },
+					{ name = "nvim_lsp", priority = 8 },
+					{ name = "luasnip", priority = 8 },
+					{ name = "buffer", priority = 8 },
+					{ name = "path", priority = 1 },
+					{ name = "calc", priority = 1 },
+					-- { name = "look", priority = 1 },
 				},
 			})
 		end,

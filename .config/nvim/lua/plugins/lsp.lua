@@ -7,6 +7,9 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
+			-- -- Ltex-ls, utils
+			{ "jhofscheier/ltex-utils.nvim", opts = {} },
+
 			-- Useful status updates for LSP.
 			{ "j-hui/fidget.nvim", opts = {} },
 
@@ -27,25 +30,55 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					vim.keymap.set("n", "<leader>cd", require("telescope.builtin").lsp_definitions, {desc="[C]ode Goto [d]efinition"})
-					vim.keymap.set("n", "<leader>cr", require("telescope.builtin").lsp_references, {desc="[C]ode Goto [R]eferences"})
-					vim.keymap.set("n", "<leader>cI", require("telescope.builtin").lsp_implementations, {desc="[C]ode Goto [I]mplementation"})
-					vim.keymap.set("n", "<leader>cD", require("telescope.builtin").lsp_type_definitions, {desc = "[C]ode Goto Type [D]efinition"})
-					vim.keymap.set("n", "<leader>cS", require("telescope.builtin").lsp_document_symbols, {desc="[C]ode Document [S]ymbols"})
-					vim.keymap.set("n", "<leader>cs", require("telescope.builtin").lsp_dynamic_workspace_symbols, {desc="[C]ode Dynamic [s]ymbols"})
-					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, {desc="[C]ode [R]ename Object"})
+					vim.keymap.set(
+						"n",
+						"<leader>cd",
+						require("telescope.builtin").lsp_definitions,
+						{ desc = "[C]ode Goto [d]efinition" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>cr",
+						require("telescope.builtin").lsp_references,
+						{ desc = "[C]ode Goto [R]eferences" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>cI",
+						require("telescope.builtin").lsp_implementations,
+						{ desc = "[C]ode Goto [I]mplementation" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>cD",
+						require("telescope.builtin").lsp_type_definitions,
+						{ desc = "[C]ode Goto Type [D]efinition" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>cS",
+						require("telescope.builtin").lsp_document_symbols,
+						{ desc = "[C]ode Document [S]ymbols" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>cs",
+						require("telescope.builtin").lsp_dynamic_workspace_symbols,
+						{ desc = "[C]ode Dynamic [s]ymbols" }
+					)
+					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[C]ode [R]ename Object" })
 					-- Execute a code action, usually your cursor needs to be on top of an error or a suggestion from your LSP for this to activate.
-					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {desc="[C]ode [A]ction (hint)"})
+					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction (hint)" })
 
 					vim.keymap.set("n", "K", function()
 						vim.lsp.buf.hover()
-					end, {desc="Hover Documentation"})
+					end, { desc = "Hover Documentation" })
 
-                    vim.keymap.set("n", 'L', function()
+					vim.keymap.set("n", "L", function()
 						vim.diagnostic.open_float()
-                    end, {desc="Show Line Diagnostics"})
+					end, { desc = "Show Line Diagnostics" })
 
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {desc="[G]oto [D]eclaration"})
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.server_capabilities.documentHighlightProvider then
@@ -72,7 +105,7 @@ return {
 						})
 					end
 
-                    -- NOTE:
+					-- NOTE:
 
 					-- The following autocommand is used to enable inlay hints in your code, if the language server you are using supports them
 					-- This may be unwanted, since they displace some of your code
@@ -88,6 +121,34 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			local servers = {
+				ltex = {
+					cmd = { "ltex-ls" },
+					-- filetypes = { "tex" },
+					-- root_dir = require("lspconfig/util").root_pattern(".ltex-ls.toml"),
+					settings = {
+						dictionary = {
+							language = "en",
+							path = "/usr/share/hunspell/en_US.dic",
+						},
+                        -- TODO: Add this back when be working on a LaTeX project
+						-- ltex = {
+						-- 	enabled = { "latex", "tex", "bib" },
+						-- 	checkFrequency = "onchange",
+						-- 	forwardSearch = {
+						-- 		executable = "zathura",
+						-- 		args = { "--synctex-forward", "%l:1:%f", "%p" },
+						-- 		onSave = false,
+						-- 	},
+						-- 	latex = {
+						-- 		build = {
+						-- 			executable = "latexmk",
+						-- 			args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+						-- 			onSave = true,
+						-- 		},
+						-- 	},
+						-- },
+					},
+				},
 				clangd = {
 					cmd = {
 						"clangd",
@@ -96,7 +157,7 @@ return {
 					},
 					-- root_dir = require("lspconfig/util").root_pattern("compile_commands.json", ".git", ".clangd"),
 					-- root_dir = require("lspconfig/util").root_pattern("compile_commands.json", ".git", "compile_flags.txt") or
-                        -- vim.fn.getcwd(),
+					-- vim.fn.getcwd(),
 				},
 				pyright = {},
 				-- ... etc. See `:help lspconfig-all`

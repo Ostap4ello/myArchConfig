@@ -43,8 +43,18 @@ message {
 inputbar {
     padding:    8px;
 
-    children:   [ prompt,textbox-prompt-colon,entry ];
+    children:   [ prompt,textbox-prompt-colon,entry, button1 ];
     //background-color:   @fg1;
+}
+
+button1 {
+    action: "kb-cancel";
+    content: "Exit";
+    horizontal-align: 1;
+    cursor: pointer;
+    // // why am I unable to change button's size??
+    // // rm comment from bgcol to see it...
+    //background-color: @fg1;
 }
 
 prompt, textbox-prompt-colon { 
