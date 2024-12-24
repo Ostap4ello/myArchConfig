@@ -25,6 +25,8 @@ alias huesos='su' #huesos admin
 alias suka='sudo' #suka pacman -S pacman
 alias nahuy='exit'
 
+alias fire="kitty --title \"Fireplace\" -o font_size=6 sh -c \"fireplace -f 65 -t 15\" & disown"
+
 function pizdets() {
     if [[ "$1" == "!" ]]; then
         poweroff
