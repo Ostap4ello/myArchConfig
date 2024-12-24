@@ -9,4 +9,5 @@ touch $HOME/.config/hypr/monitors.conf # Touch the file to avoid errors
 hyprctl reload
 mv $HOME/.config/hypr/monitors.conf.bak $HOME/.config/hypr/monitors.conf
 hyprctl reload
+pkill -STOP Hyprland
 pkill -CONT Hyprland
