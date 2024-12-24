@@ -1,9 +1,6 @@
 * {
-    /* reference the color by using @color-name */
     font-family: "CaskaydiaCove Nerd Font", monospace;
     font-size: 12pt;
-    /*margin: 0;*/
-    /*padding: 0;*/
     color: #ffffff;
 
     border: 0px dotted;
@@ -13,7 +10,7 @@
 }
 
 window#waybar {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
 
     margin-bottom: 10px;
 }
@@ -32,11 +29,7 @@ window#waybar {
 
 #workspaces button:hover {
     box-shadow: inset 0px -1px white;
-    /* Remove predefined box-shadow */
     text-shadow: none;
-    /* Remove predefined text-shadow */
     background: none;
-    /* Remove predefined background color (white) */
     transition: 0ms;
-    /* Disable predefined animations */
 }

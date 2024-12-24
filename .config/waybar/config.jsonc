@@ -12,7 +12,7 @@
 
     "modules-left": [ "custom/appmenu", "custom/clock",/* "custom/separator", "custom/hints",*/ "custom/separator", "hyprland/language" ],
     "modules-center": [ "hyprland/workspaces" ],
-    "modules-right": [ "tray", "cpu", "memory", "pulseaudio", "network", "battery" ],
+    "modules-right": [ "tray", "cpu", "memory", "custom/separator" , "pulseaudio", "custom/separator", "network", "custom/separator", "battery" ],
 
     // Modules configuration
 
@@ -22,11 +22,7 @@
         // "format": "{name}: {icon}",
         "format": "{icon}",
         "format-icons": {
-        //     "1": "",
-        //     "2": "",
-        //     "3": "",
-        //     "4": "",
-        //     "5": "",
+        //     "1": "", // can set icon for each workspace
             "urgent": "",
             "focused": "",
             "active": "",
@@ -36,7 +32,7 @@
         "persistent-workspaces": {
             "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, "special:magic"]
         },
-        "show-special": true,
+        "show-special": true
     },
     "hyprland/language": {
         "format": "<span font_size='10pt'>{}</span>",
@@ -54,7 +50,6 @@
         "port": 6600,
         "tooltip": false,
         "exec-if": "pgrep mpd",
-        //"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
         "format": "{stateIcon} {consumeIcon}{randomIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
         //"format-disconnected": "Disconnected ",
         //"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
@@ -135,9 +130,9 @@
         "format-alt": "{icon} {capacity}% - {time}",
         "format-icons": [" ", " ", " ", " ", " "],
         "format-time": "{H}h{M}m",
-        "format-charging": " {icon} {capacity}%",  // - {time}",
-        "format-full": " {icon}",
-        "interval": 10,
+        "format-charging": " {capacity}%",  // - {time}",
+        "format-full": " {capacity}%",
+        "interval": 7,
         "states": {
             "warning": 25,
             "critical": 10
@@ -148,7 +143,7 @@
 
     "network": {
         //"interface": "enp0n25", // (Optional) To force the use of this interface
-        "format-wifi": "{essid}  ",
+        "format-wifi": "{essid}<span color='#999999'>({signalStrength}%)</span>  ",
         "format-ethernet": "{ifname}  ",
         "format-linked": "{ifname} (No IP)  !",
         "format-disconnected": "  !",
@@ -161,9 +156,9 @@
         "tooltip": false,
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": " {icon}  {format_source}",
-        "format-muted": "  {format_source}",
+        "format-bluetooth": "{volume}% {icon}{format_source}",
+        "format-bluetooth-muted": "  {icon}{format_source}",
+        "format-muted": "   {format_source}",
         "format-source": " ",
         "format-source-muted": " ",
         "format-icons": {
