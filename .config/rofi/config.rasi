@@ -1,1 +1,6 @@
+configuration {
+    font:   "CaskaydiaCove Nerd Font 12";
+    modi: "window,drun,run,emoji,calc";
+}
+
 @theme "/home/ostap4ello/.local/share/rofi/themes/aa-theme.rasi"
