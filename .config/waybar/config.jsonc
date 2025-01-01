@@ -10,7 +10,7 @@
     "margin-left": 10,
     "margin-right": 10,
 
-    "modules-left": [ "custom/appmenu", "custom/clock",/* "custom/separator", "custom/hints",*/ "custom/separator", "hyprland/language" ],
+    "modules-left": [ "image#appmenu", "custom/clock",/* "custom/separator", "custom/hints",*/ "custom/separator", "hyprland/language" ],
     "modules-center": [ "hyprland/workspaces" ],
     "modules-right": [ "tray", "cpu", "memory", "custom/separator" , "pulseaudio", "custom/separator", "network", "custom/separator", "battery" ],
 
@@ -187,6 +187,11 @@
         "tooltip-format": "{status}"
     },
 
+    "image#appmenu": {
+        "path": "/home/ostap4ello/.local/share/logoAP-3.png",
+        "size": 22,
+        "on-click": "rofi -show drun"
+    },
     // CUSTOM MODULES
 
     "custom/separator": {
