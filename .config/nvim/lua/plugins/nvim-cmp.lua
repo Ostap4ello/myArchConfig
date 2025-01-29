@@ -95,7 +95,7 @@ return {
 					{ name = "buffer", priority = 8 },
 					{ name = "path", priority = 1 },
 					{ name = "calc", priority = 1 },
-					-- { name = "look", priority = 1 },
+					{ name = "look", priority = 1 },
 				},
 			})
 		end,

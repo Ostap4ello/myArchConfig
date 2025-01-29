@@ -57,8 +57,13 @@ vim.opt.shiftwidth = 4
 vim.opt.wrap = false
 vim.opt.linebreak = false
 
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
+    pattern = "*.gay",
+    command = "set filetype=gay",
+})
+
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "text",
+	pattern = {"txt", "markdown", "rst", "gay"},
 	command = "setlocal linebreak wrap",
 })
 
