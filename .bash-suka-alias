@@ -53,7 +53,6 @@ function pripizdosh() {
     # if not enough args
     device="$1"
     mntfolder="$2"
-
     if [[ "${mntfolder: -1}" == "/" ]]; then
         mntfolder="${mntfolder::-1}"
     fi
@@ -85,7 +84,7 @@ function pripizdosh() {
         fi
 
         mkdir -p "$mntfolder/$devfolder" &&
-            sudo mount -o umask=000 "$device" "$mntfolder/$devfolder" &&
+            sudo mount -o umask=111 "$device" "$mntfolder/$devfolder" &&
             echo "Mounted $device to $mntfolder/$devfolder"
     else
         echo "No such device"

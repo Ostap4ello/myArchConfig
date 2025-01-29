@@ -26,6 +26,8 @@ alias py='python'
 alias manual='man --locale=uk'
 alias docker-compose='docker compose'
 alias btcli='bluetoothctl'
+alias btdefault='bluetoothctl connect 2C:FD:B3:4B:02:B4; bluetoothctl connect 00:9E:C8:F7:70:31'
+alias nightmode='hyprshade toggle blue-light-filter'
 
 #directories
 alias cdcd='cd ~/Workspace/ ; tree -d -L 2'
