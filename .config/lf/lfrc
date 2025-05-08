@@ -123,9 +123,17 @@ map <c-up> "scroll-up"
 map <c-down> "scroll-down"
 map <f-2> :rename
 
+set sixel true
 # set previewer and cleaner (images etc.)
 # set previewer ~/.config/lf/lf-ueberzug-previewer
 # set cleaner ~/.config/lf/lf-ueberzug-cleaner
+
+
+# set previewer ctpv
+# set cleaner ctpvclear
+# &ctpv -s $id
+# &ctpvquit $id
+
 set previewer stpv
 set cleaner stpvimgclr
 &stpvimg --listen $id
