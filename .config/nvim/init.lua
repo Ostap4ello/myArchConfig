@@ -12,19 +12,34 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- nvim native settings
 require("vim-options")
 require("vim-binds-native")
-require("lazy").setup("plugins")
 
--- commands to run for user
-vim.cmd.colorscheme("oxocarbon")
-
--- open nvim-tree on startup if no file is provided
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		if vim.fn.argc() == 0 then
-			require("nvim-tree.api").tree.open()
-		end
-	end,
+-- import configs
+require("lazy").setup({
+	spec = {
+		{ import = "plugins" },
+		{ import = "plugins/utils" },
+		{ import = "plugins/lsp" },
+		{ import = "plugins/misc" },
+	},
 })
--- instead of: require("nvim-tree.api").tree.open()
+
+-- commands to run as nvim starts
+vim.cmd("ThemeDefault")
+vim.cmd("Copilot disable")
+if vim.fn.argc() == 0 then
+    require("nvim-tree.api").tree.open()
+end
+
+-- neovide specific settings
+if vim.g.neovide then
+    require("neovide-conf")
+    require("nvim-tree.api").tree.close()
+    vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+            vim.cmd("SessionSearch")
+        end,
+    })
+end

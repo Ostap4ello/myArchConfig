@@ -32,15 +32,8 @@ return { -- Autoformat
 			-- ksh = { "beautysh" },
 			bash = { "shfmt" },
 			assembly = { "asmfmt" },
-			-- c = { "clang-format" },
-			-- cpp = { "clang-format" },
 			c = { "clang_format_new" },
 			cpp = { "clang_format_new" },
-			-- Conform can also run multiple formatters sequentially
-			--
-			-- You can use a sub-list to tell conform to run *until* a formatter
-			-- is found.
-			-- javascript = { { "prettierd", "prettier" } },
 		},
 		formatters = {
 			clang_format_new = {
