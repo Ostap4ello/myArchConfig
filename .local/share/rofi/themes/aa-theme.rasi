@@ -25,7 +25,7 @@ mainbox {
 
 window {
     location:   center;
-    width:      500;
+    width:      25em;
 
     padding:    1em;
     border:     2px solid;
@@ -75,8 +75,8 @@ entry {
 }
 
 listview {
-    margin: 8px 0 0 0;
-    padding:    4px 0;
+    margin: 0.5em 0 0 0;
+    padding:    0.4em 0;
     lines:      10;
     columns:    1;
 
@@ -89,8 +89,8 @@ element-icon, element-text {
 
 
 element {
-    padding:    8px;
-    spacing:    8px;
+    padding:    0.4em;
+    spacing:    0.4em;
 }
 
 element normal normal {
