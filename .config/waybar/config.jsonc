@@ -17,23 +17,36 @@
     // Modules configuration
 
     "hyprland/workspaces": {
-        "disable-scroll": true,
+        "format": "{icon}{name}{icon}",
         "all-outputs": true,
-        // "format": "{name}: {icon}",
-        "format": "{icon}",
         "format-icons": {
-        //     "1": "", // can set icon for each workspace
-            "urgent": "",
-            "focused": "",
-            "active": "",
-            "default": "",
-            "empty": ""
+            "urgent": "!",
+            "focused": "⏽",
+            "active": "⏽",
+            "default": " ",
+            "empty": " ",
         },
-        "persistent-workspaces": {
-            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, "special:magic"]
-        },
-        "show-special": true
+        "show-special": true,
+        "special-visible-only": true,
     },
+   //"hyprland/workspaces": {
+    //    "disable-scroll": true,
+    //    "all-outputs": true,
+    //    // "format": "{name}: {icon}",
+    //    "format": "{icon}",
+    //    "format-icons": {
+    //    //     "1": "", // can set icon for each workspace
+    //        "urgent": "",
+    //        "focused": "",
+    //        "active": "",
+    //        "default": "",
+    //        "empty": ""
+    //    },
+    //    "persistent-workspaces": {
+    //        "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, "special:magic"]
+    //    },
+    //    "show-special": true
+    //},
     "hyprland/language": {
         "format": "<span font_size='10pt'>{}</span>",
         "format-en": "Splendid, sluuurp",
@@ -189,7 +202,7 @@
 
     "image#appmenu": {
         "path": "/home/ostap4ello/.local/share/logoAP-3.png",
-        "size": 22,
+        "size": 25,
         "on-click": "rofi -show drun"
     },
     // CUSTOM MODULES
