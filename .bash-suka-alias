@@ -1,32 +1,34 @@
-#!/bin/bash
-
 #
 # ~/.bash_aliases (pizdec edition)
 #
 
-# This file is sourced by .bashrc, and is used to store some aliases and functions
-
-alias да='echo "вінда"; sleep 1; echo "Нєхуй тут lf українською писати, дебіл"; sleep 1; echo "..."; sleep 1'
-
-alias kclone="kitty & disown"
-
-alias neozhyd='neofetch'
-alias pidaras='ls -a'
-alias blyat='clear'
-alias zarzizeni='lsblk -l'
-
-alias jebash='cd' #pizdui ..
-alias vpizdu='cd /'
+## Aliases
+# used
 alias huynya='cd ~/.config/nvim; nvim'
-alias huynya-projects='cd ~/Documents/VSCode/; ls -a -l'
 alias huynya-conf='cd ~/.config/hypr/; nvim'
-
-alias huesos='su' #huesos admin
-alias suka='sudo' #suka pacman -S pacman
+alias blyat='clear'
 alias nahuy='exit'
+alias kundisplay_bri="external_display_brightness"
+alias pripizdosch='supermount'
+alias vidpizdosch='superumount'
+alias pidaras='python3'
+# less used, can be replaced wih more useful aliases
+alias да='echo "вінда"; sleep 1; echo "Нєхуй тут lf українською писати, дебіл"; sleep 1; echo "..."; sleep 1'
+# alias neozhyd='neofetch'
+# alias pidaras='ls -a'
+# alias zarzizeni='lsblk -l'
+# alias vpizdu='cd /'
+# alias huesos='su' #huesos admin
+# alias suka='sudo' #suka pacman -S pacman
 
-alias fire="kitty --title \"Fireplace\" -o font_size=6 sh -c \"fireplace -f 65 -t 15\" & disown"
-
+## Functions
+function jebash() {
+    if [ -z "$1" ]; then
+        echo "що тобі заїбашити, тормоз?"
+    else
+        ./"$@" || echo "не спрацювало, піздуй нахуй"
+    fi
+}
 function pizdets() {
     if [[ "$1" == "!" ]]; then
         poweroff
@@ -34,8 +36,6 @@ function pizdets() {
         reboot
     fi
 }
-
-# alias isPutinHuylo='yes yes'
 function isPutinHuylo() {
     myYesArr=("yes", "sure", "ano", "da", "zvisno")
     while true; do
@@ -44,80 +44,3 @@ function isPutinHuylo() {
     done
 }
 
-# mounting/unmounting devices functions
-#
-# NOTE: name of mntpoint could be label
-#
-
-function pripizdosh() {
-    # if not enough args
-    device="$1"
-    mntfolder="$2"
-    if [[ "${mntfolder: -1}" == "/" ]]; then
-        mntfolder="${mntfolder::-1}"
-    fi
-
-    if [ -z "1" ]; then #if no arguments (-z means zero length string)
-        lsblk -o name,mountpoint,label,size,uuid
-        echo ""
-        echo "for help type 'pripizdosh help'"
-    elif [ -z "$mntfolder" ]; then
-        lsblk -o path,mountpoint,label,size,uuid | grep "$1"
-
-    # flags or custom commands
-    elif [[ "$1" == "help" ]]; then
-        echo "pripizdosh [device] [mountpoint] - mounts the device to the mountpoint"
-        echo "vidpizdozh [device] - unmounts the device"
-        echo "when no arguments are given, lists all devices"
-        echo "when only one argument is given, lists info about the device"
-
-    elif [ -e "$1" ]; then
-        devfolder="$(
-            lsblk -o path,name,label |
-                grep "$device" |
-                awk '{print $2, "-", $3}' |
-                sed 's/[^a-zA-Z0-9-]//g'
-        )"
-
-        if [[ "${devfolder: -1}" == "-" ]]; then
-            mntfolder="${devfolder::-1}"
-        fi
-
-        mkdir -p "$mntfolder/$devfolder" &&
-            sudo mount -o umask=111 "$device" "$mntfolder/$devfolder" &&
-            echo "Mounted $device to $mntfolder/$devfolder"
-    else
-        echo "No such device"
-    fi
-}
-
-function vidpizdosh() {
-    if [ -z "$1" ]; then #if no arguments (-z means zero length string)
-        lsblk -o name,mountpoint,label,size,uuid
-        echo ""
-        echo "for help type 'vidpizdosh help'"
-
-    # flags or custom commands
-    elif [[ "$1" == "help" ]]; then
-        echo "vidpizdozh [device] - unmounts the device"
-        echo "when no arguments are given, lists all devices"
-
-    elif [ -e "$1" ]; then
-        sudo umount "$1" &&
-            rmdir "$1" &&
-            echo "Unmounted $1"
-
-    else
-        echo "No such device"
-    fi
-}
-
-# NOTE: this is used to fix broken
-# colors of ls within mounted devices
-# think of something better
-alias mls="ls --color=never"
-
-# NOTE: explore possibilities
-alias піздєц1='sudo systemctl suspend'
-alias піздєц2='sudo systemctl hibernate'
-alias піздєц3='sudo systemctl hybrid-sleep'
