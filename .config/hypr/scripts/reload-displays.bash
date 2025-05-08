@@ -4,10 +4,19 @@
 # This script is used to reload the displays in the event that they are not
 # working properly. This script is for HYPRLAND.
 
-mv $HOME/.config/hypr/monitors.conf $HOME/.config/hypr/monitors.conf.bak
-touch $HOME/.config/hypr/monitors.conf # Touch the file to avoid errors
+hypr_dir="$HOME/.config/hypr"
+
+mv $hypr_dir/monitors.conf $hypr_dir/monitors.conf.bak
+touch $hypr_dir/monitors.conf
 hyprctl reload
-mv $HOME/.config/hypr/monitors.conf.bak $HOME/.config/hypr/monitors.conf
+mv $hypr_dir/monitors.conf.bak $hypr_dir/monitors.conf
 hyprctl reload
+
 pkill -STOP Hyprland
+sleep 0.1
 pkill -CONT Hyprland
+
+exec $hypr_dir/scripts/lid-handling.bash check
+pkill waybar & waybar & disown
+
+exit 0;
