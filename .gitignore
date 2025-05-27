@@ -38,6 +38,8 @@
 .bash_history*
 .config/hypr/monitors.conf
 .config/nvim/lazy-lock.json
+**/*.bak
+**/.*.bak
 
 # !.config/<sth>
 # !.config/<sth>/**
