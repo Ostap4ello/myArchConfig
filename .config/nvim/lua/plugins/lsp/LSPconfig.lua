@@ -27,7 +27,7 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
-			require("java").setup()
+			-- require("java").setup()
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities() -- Initialize with the capabilities that the NVIM is able to do
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
@@ -68,7 +68,7 @@ return {
 									{
 										name = "JavaSE-17",
 										path = "/usr/lib/jvm/java-17-openjdk/",
-                                        default = true,
+										default = true,
 									},
 									{
 										name = "JavaSE-21",
@@ -87,7 +87,20 @@ return {
 				["bash-language-server"] = {},
 				shfmt = {},
 
-				clangd = {},
+				clangd = {
+					cmd = {
+						"clangd",
+						"--background-index",
+						"--clang-tidy",
+						"--log=verbose",
+						"-Wall",
+						"-Wextra",
+						"-Werror",
+					},
+					init_options = {
+						fallbackFlags = { "-std=c++17" }, -- Adjust as needed for your project
+					},
+				},
 				["clang-format"] = {},
 
 				pyright = {},
@@ -127,7 +140,7 @@ return {
 						"n",
 						"<leader>cr",
 						require("telescope.builtin").lsp_references,
-						{ desc = "[C]ode Goto [R]eferences" }
+						{ desc = "[C]ode Goto [r]eferences" }
 					)
 					vim.keymap.set(
 						"n",
@@ -153,7 +166,7 @@ return {
 						require("telescope.builtin").lsp_dynamic_workspace_symbols,
 						{ desc = "[C]ode Dynamic [s]ymbols" }
 					)
-					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[C]ode [R]ename Object" })
+					vim.keymap.set("n", "<leader>cR", vim.lsp.buf.rename, { desc = "[C]ode [R]ename Object" })
 					-- Execute a code action, usually your cursor needs to be on top of an error or a suggestion from your LSP for this to activate.
 					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction (hint)" })
 
@@ -165,7 +178,7 @@ return {
 						vim.diagnostic.open_float()
 					end, { desc = "Show Line Diagnostics" })
 
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+					-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.server_capabilities.documentHighlightProvider then

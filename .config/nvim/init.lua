@@ -27,19 +27,20 @@ require("lazy").setup({
 })
 
 -- commands to run as nvim starts
+vim.cmd("colorscheme oxocarbon")
 vim.cmd("ThemeDefault")
-vim.cmd("Copilot disable")
+-- vim.cmd("Copilot disable")
 if vim.fn.argc() == 0 then
     require("nvim-tree.api").tree.open()
 end
 
 -- neovide specific settings
-if vim.g.neovide then
-    require("neovide-conf")
-    require("nvim-tree.api").tree.close()
-    vim.api.nvim_create_autocmd("VimEnter", {
-        callback = function()
-            vim.cmd("SessionSearch")
-        end,
-    })
-end
+-- if vim.g.neovide then
+--     require("neovide-conf")
+--     require("nvim-tree.api").tree.close()
+--     vim.api.nvim_create_autocmd("VimEnter", {
+--         callback = function()
+--             vim.cmd("SessionSearch")
+--         end,
+--     })
+-- end

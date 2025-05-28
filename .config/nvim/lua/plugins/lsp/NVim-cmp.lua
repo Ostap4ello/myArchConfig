@@ -3,14 +3,16 @@ return {
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-calc",
-			"octaltree/cmp-look",
 			"L3MON4D3/LuaSnip",
-			"rafamadriz/friendly-snippets",
+			"rafamadriz/friendly-snippets", -- todo
 			"saadparwaiz1/cmp_luasnip",
+
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+
 			"hrsh7th/cmp-path",
+			-- "hrsh7th/cmp-calc",
+			-- "octaltree/cmp-look",
 			config = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
 			end,
@@ -63,14 +65,14 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = {
-					{ name = "copilot", priority = 8 },
-					{ name = "nvim_lsp", priority = 8 },
-					{ name = "luasnip", priority = 8 },
-					{ name = "buffer", priority = 8 },
+					{ name = "copilot", priority = 8 },     -- Copilot
+					{ name = "nvim_lsp", priority = 8 },    -- cmp-nvim-lsp
+					{ name = "luasnip", priority = 8 },     -- LuaSnip
+					{ name = "buffer", priority = 8 },      -- cmp-buffer
                     { name = "vim-dadbod-completion", priority = 8 },
 					{ name = "path", priority = 1 },
-					{ name = "calc", priority = 1 },
-					{ name = "look", priority = 1 },
+					-- { name = "calc", priority = 1 },
+					-- { name = "look", priority = 1 },
 				},
 			})
 		end,
