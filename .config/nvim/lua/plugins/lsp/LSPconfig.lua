@@ -22,62 +22,48 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"mason-org/mason.nvim",
+			"williamboman/mason.nvim", -- Corrected: "mason-org/mason.nvim" is usually "williamboman/mason.nvim"
 			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			-- "nvim-java/nvim-java", -- Keep commented or remove if not using nvim-java yet
 		},
 		config = function()
-			-- require("java").setup()
+			-- require("java").setup() -- Keep commented or remove if not using nvim-java yet
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities() -- Initialize with the capabilities that the NVIM is able to do
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			local servers = {
 				lua_ls = {
+					root_dir = vim.fn.getcwd(),
+					cmd = { "lua-language-server", "--force-accept-workspace" }, -- Your custom cmd
 					settings = {
 						Lua = {
 							diagnostics = {
-								globals = { "vim" }, -- Recognize the global variable 'vim'
+								globals = { "vim" },
+							},
+							runtime = {
+								version = "LuaJIT",
 							},
 							workspace = {
-								library = vim.api.nvim_get_runtime_file("", true), -- Add runtime files to the workspace
 								checkThirdParty = false,
 							},
-							telemetry = { enable = false }, -- Disable telemetry
+							telemetry = {
+								enable = false, -- Recommended to disable for privacy
+							},
 						},
 					},
 				},
-				stylua = {},
-
-				jdtls = { -- defined in ftplugin
+				jdtls = {
 					settings = {
 						java = {
 							configuration = {
-								-- These are potential runtimes that the project can use. I believe for these to be used, the maven or
-								-- gradle config files need to specify that a specific runtime should be used, or you can set it with
-								-- :JdtSetRuntime.
 								runtimes = {
-									{
-										name = "JavaSE-1.8",
-										path = "/usr/lib/jvm/java-8-openjdk/",
-									},
-									{
-										name = "JavaSE-11",
-										path = "/usr/lib/jvm/java-11-openjdk/",
-									},
-									{
-										name = "JavaSE-17",
-										path = "/usr/lib/jvm/java-17-openjdk/",
-                                        default = true,
-									},
-									{
-										name = "JavaSE-21",
-										path = "/usr/lib/jvm/java-21-openjdk/",
-									},
-									{
-										name = "JavaSE-24",
-										path = "/usr/lib/jvm/java-24-openjdk/",
-									},
+									{ name = "JavaSE-1.8", path = "/usr/lib/jvm/java-8-openjdk/" },
+									{ name = "JavaSE-11", path = "/usr/lib/jvm/java-11-openjdk/" },
+									{ name = "JavaSE-17", path = "/usr/lib/jvm/java-17-openjdk/", default = true },
+									{ name = "JavaSE-21", path = "/usr/lib/jvm/java-21-openjdk/" },
+									{ name = "JavaSE-24", path = "/usr/lib/jvm/java-24-openjdk/" },
 								},
 							},
 						},
@@ -85,36 +71,47 @@ return {
 				},
 
 				["bash-language-server"] = {},
-				shfmt = {},
 
-				clangd = {},
-				["clang-format"] = {},
-
+				clangd = {
+					cmd = { "clangd", "--header-insertion=never" },
+				},
 				pyright = {},
-				flake8 = {},
-
-				-- texlab = {},
-				jq = {},
+			}
+			local misc = {
+				"black",
+				"stylua",
+				"shfmt",
+				"jq",
+				"flake8",
+                "clang-format"
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})
-			-- vim.list_extend(ensure_installed, {
-			-- "black", -- Used to format Python
-			-- })
+			ensure_installed = vim.list_extend(ensure_installed, misc)
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
 				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+					function(server_name, default_lsp_config)
+						local server_opts = servers[server_name] or {}
+
+						default_lsp_config.capabilities =
+							vim.tbl_deep_extend("force", default_lsp_config.capabilities or {}, capabilities)
+
+						local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_opts)
+
+						require("lspconfig")[server_name].setup(merged_config)
 					end,
 				},
 				ensure_installed = {},
-				automatic_installation = true,
+				automatic_installation = false,
 			})
+
+			for name, setting in pairs(servers) do
+				vim.lsp.config(name, setting)
+				vim.lsp.enable(name)
+			end
 
 			-- Keymaps for LSP
 			vim.api.nvim_create_autocmd("LspAttach", {

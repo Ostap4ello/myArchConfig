@@ -1,4 +1,4 @@
-return { -- Autoformat
+return {
 	"stevearc/conform.nvim",
 	lazy = false,
 	keys = {
@@ -39,7 +39,7 @@ return { -- Autoformat
 			clang_format_new = {
 				command = "clang-format",
 				args = {
-					"-style={IncludeBlocks: Preserve, SortIncludes: Never, BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, UseTab: ForIndentation, ColumnLimit: 100}",
+					"-style=Microsoft",
 				},
 				stdin = true,
 			},

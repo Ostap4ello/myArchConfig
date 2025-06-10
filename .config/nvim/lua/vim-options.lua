@@ -57,6 +57,9 @@ vim.opt.shiftwidth = 4
 vim.opt.wrap = false
 vim.opt.linebreak = false
 
+-- Vim window width
+vim.g.winminwidth = 3
+
 vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
     pattern = "*.gay",
     command = "set filetype=gay",
