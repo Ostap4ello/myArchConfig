@@ -5,6 +5,11 @@ return {
 	config = function()
 		local builtin = require("telescope.builtin")
 
+		local settings = {
+			defaults = {
+				-- file_ignore_patterns = { "build/.*", "bin/.*" },
+			},
+		}
 		-- require("telescope").extensions.live_grep_args.live_grep_args({
 		-- 	vimgrep_arguments = {
 		-- 		"rg",
@@ -57,6 +62,6 @@ return {
 			builtin.find_files({ no_ignore = true })
 		end, { desc = "Search files in New [T]ab" })
 
-		require("telescope").setup({})
+		require("telescope").setup(settings)
 	end,
 }

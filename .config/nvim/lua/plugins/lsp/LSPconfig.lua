@@ -89,13 +89,14 @@ return {
 
 				clangd = {
 					cmd = {
-						"clangd",
-						"--background-index",
-						"--clang-tidy",
-						"--log=verbose",
-						"-Wall",
-						"-Wextra",
-						"-Werror",
+						"clangd --header-insertion=never",
+						-- "--background-index",
+						-- "--clang-tidy",
+						-- "--log=verbose",
+						-- "--header-insertion=never",
+						-- "-Wall",
+						-- "-Wextra",
+						-- "-Werror",
 					},
 					init_options = {
 						fallbackFlags = { "-std=c++17" }, -- Adjust as needed for your project
