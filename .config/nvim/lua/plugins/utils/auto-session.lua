@@ -7,7 +7,6 @@ return {
 
 		vim.keymap.set("n", "<leader>ss", function ()
 		    vim.cmd("SessionSearch")
-            vim.cmd("NvimTreeRefresh")
 		end, { desc = "[S]earch Saved [S]essions" })
 	end,
 }

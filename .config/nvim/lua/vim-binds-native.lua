@@ -5,8 +5,6 @@ vim.keymap.set("n", "<leader>T", function()
     vim.cmd("tab new")
     vim.cmd("terminal")
 end, { desc = "Open Terminal In New Tab" })
--- Open NvimTree
-vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", {desc="Toggle Nvim Tree"})
 -- Escape terminal mode bind
 -- vim.keymap.set("t", "<esc>", "<c-\\><c-n><CR>", {noremap=true, silent=true})
 -- Save and quit ALL

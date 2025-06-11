@@ -30,9 +30,6 @@ require("lazy").setup({
 vim.cmd("colorscheme oxocarbon")
 vim.cmd("ThemeDefault")
 -- vim.cmd("Copilot disable")
-if vim.fn.argc() == 0 then
-    require("nvim-tree.api").tree.open()
-end
 
 -- neovide specific settings
 -- if vim.g.neovide then
