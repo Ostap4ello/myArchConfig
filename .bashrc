@@ -33,6 +33,15 @@ alias nightmode='hyprshade toggle blue-light-filter'
 alias fire="kitty --title \"Fireplace\" -o font_size=6 sh -c \"fireplace -f 65 -t 15\" & disown"
 
 #functions
+wl-img-saveto(){
+    if [ -z "$1" ]; then
+        echo "usage: wl-img-saveto <filename> (include .png in name)"
+        return
+    fi
+
+    wl-paste | cat - > "$1"
+}
+
 external_display_brightness() {
     if [ -z "$1" ]; then
         echo "$(ddcutil getvcp 0x10 | sed 's/[^0-9 ]*//g' | awk '{print $2}')"

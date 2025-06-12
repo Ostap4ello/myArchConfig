@@ -11,10 +11,7 @@ return { -- Useful plugin to show you pending keybinds.
 			{ "<leader>d", group = "[D]ebug" },
 			{ "<leader>s", group = "[S]earch" },
 			{ "<leader>w", group = "[W]orkspace" },
-			{ "<leader>t", group = "[T]oggle" },
-			-- { "<leader>r", group = "[R]ename" },
-			-- { "<leader>h", group = "Git [H]unk" },
-			-- { "<leader>t", group = "Focus next [T]ab" },
+			{ "<leader>g", group = "[G]it" },
 		})
 	end,
 }
