@@ -15,6 +15,20 @@ return {
 			end, { desc = "Toggle Nvim Tree" })
 		end,
 	},
+	{
+		"s1n7ax/nvim-window-picker",
+		config = function()
+			require("window-picker").setup({})
+
+			vim.keymap.set("n", "<leader>w", function()
+                vim.cmd("wincmd =")
+				local picked_window_id = require("window-picker").pick_window({
+					include_current_win = true,
+				}) or vim.api.nvim_get_current_win()
+				vim.api.nvim_set_current_win(picked_window_id)
+			end, { desc = "Pick a window" })
+		end,
+	},
 	-- {
 	-- 	"nvim-tree/nvim-tree.lua",
 	-- 	version = "*",

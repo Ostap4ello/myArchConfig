@@ -77,14 +77,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Make nvim-tree follow the root of the vim (:cd commands)
-vim.api.nvim_create_autocmd("DirChanged", {
-  pattern = "*",
-  callback = function()
-    -- Check if nvim-tree is loaded
-    local nvim_tree = require("nvim-tree.api")
-    if nvim_tree then
-      -- Change nvim-tree's root directory to match Neovim's CWD
-      nvim_tree.tree.change_root(vim.fn.getcwd())
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("DirChanged", {
+--   pattern = "*",
+--   callback = function()
+--     -- Check if nvim-tree is loaded
+--     local nvim_tree = require("nvim-tree.api")
+--     if nvim_tree then
+--       -- Change nvim-tree's root directory to match Neovim's CWD
+--       nvim_tree.tree.change_root(vim.fn.getcwd())
+--     end
+--   end,
+-- })
