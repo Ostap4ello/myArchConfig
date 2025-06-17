@@ -68,9 +68,9 @@ return {
 					{ name = "copilot", priority = 8 },     -- Copilot
 					{ name = "nvim_lsp", priority = 8 },    -- cmp-nvim-lsp
 					{ name = "luasnip", priority = 8 },     -- LuaSnip
-					{ name = "buffer", priority = 8 },      -- cmp-buffer
                     { name = "vim-dadbod-completion", priority = 8 },
-					{ name = "path", priority = 1 },
+					{ name = "path", priority = 2 },
+					{ name = "buffer", priority = 1 },      -- cmp-buffer
 					-- { name = "calc", priority = 1 },
 					-- { name = "look", priority = 1 },
 				},

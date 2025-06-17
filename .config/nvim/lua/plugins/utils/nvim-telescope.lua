@@ -7,6 +7,7 @@ return {
 
 		local settings = {
 			defaults = {
+                layout_strategy = "vertical",
 				-- file_ignore_patterns = { "build/.*", "bin/.*" },
 			},
 		}
