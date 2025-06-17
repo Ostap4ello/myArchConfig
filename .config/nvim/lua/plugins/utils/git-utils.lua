@@ -9,6 +9,7 @@ return {
 			local vgit = require("vgit")
 			vgit.toggle_diff_preference()
 			vgit.toggle_live_blame()
+			vgit.toggle_live_gutter() -- disables gutter as it is quite unstable
 
 			vim.keymap.set("n", "<leader>gd", function()
 				vgit.buffer_diff_preview()
@@ -25,16 +26,16 @@ return {
 			vgit.setup()
 		end,
 	},
-	-- {
-	-- 	"lewis6991/gitsigns.nvim",
-	-- 	opts = {
-	-- 		signs = {
-	-- 			add = { text = "+" },
-	-- 			change = { text = "~" },
-	-- 			delete = { text = "_" },
-	-- 			topdelete = { text = "‾" },
-	-- 			changedelete = { text = "~" },
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"lewis6991/gitsigns.nvim", -- better gutter
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+		},
+	},
 }
