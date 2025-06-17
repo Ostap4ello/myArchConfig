@@ -6,6 +6,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
+            "s1n7ax/nvim-window-picker",
 		},
 		lazy = false, -- neo-tree will lazily load itself
 		config = function()
@@ -21,7 +22,7 @@ return {
 			require("window-picker").setup({})
 
 			vim.keymap.set("n", "<leader>w", function()
-                vim.cmd("wincmd =")
+                -- vim.cmd("wincmd =")
 				local picked_window_id = require("window-picker").pick_window({
 					include_current_win = true,
 				}) or vim.api.nvim_get_current_win()
