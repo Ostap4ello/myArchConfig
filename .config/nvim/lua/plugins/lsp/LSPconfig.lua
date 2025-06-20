@@ -78,12 +78,14 @@ return {
 				pyright = {},
 			}
 			local misc = {
+                "asmfmt",
 				"black",
 				"stylua",
+				"beautysh",
 				"shfmt",
 				"jq",
 				"flake8",
-                "clang-format"
+				"clang-format",
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})

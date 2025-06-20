@@ -26,11 +26,11 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "black" },
-			-- sh = { "beautysh" },
+			sh = { "beautysh" },
 			-- zsh = { "beautysh" },
 			-- csh = { "beautysh" },
 			-- ksh = { "beautysh" },
-			bash = { "shfmt" },
+			bash = { "beautysh" },
 			assembly = { "asmfmt" },
 			c = { "clang_format_new" },
 			cpp = { "clang_format_new" },
