@@ -6,17 +6,24 @@
 
 hypr_dir="$HOME/.config/hypr"
 
-mv $hypr_dir/monitors.conf $hypr_dir/monitors.conf.bak
+tmpfile=$(mktemp)
+mv $hypr_dir/monitors.conf "$tmpfile"
 touch $hypr_dir/monitors.conf
 hyprctl reload
-mv $hypr_dir/monitors.conf.bak $hypr_dir/monitors.conf
+mv "$tmpfile" $hypr_dir/monitors.conf
 hyprctl reload
+rm "$tmpfile"
 
-pkill -STOP Hyprland
-sleep 0.1
-pkill -CONT Hyprland
+# hyprctl dispatch dpms off
+# sleep 1
+# hyprctl dispatch dpms on
+# hyprctl reload
 
-exec $hypr_dir/scripts/lid-handling.bash check
-pkill waybar & waybar & disown
+# pkill -STOP Hyprland
+# sleep 0.1
+# pkill -CONT Hyprland
+
+# exec $hypr_dir/scripts/lid-handling.bash check
+# pkill waybar & waybar & disown
 
 exit 0;
