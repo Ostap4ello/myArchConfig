@@ -8,7 +8,7 @@
 # configs...
 !.bash*
 
-!.config
+# !.config
 
 !.config/hypr
 !.config/kitty
@@ -28,8 +28,8 @@
 !.config/waybar/**
 !.config/dunst/**
 
-!.local
-!.local/share
+# !.local
+# !.local/share
 !.local/share/rofi
 !.local/share/rofi/themes
 !.local/share/rofi/themes/**
