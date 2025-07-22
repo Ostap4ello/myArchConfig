@@ -71,6 +71,18 @@ return {
 			vim.keymap.set("n", "<leader>gB", function()
 				gitSigns.toggle_current_line_blame()
 			end, { desc = "[G]it toggle live [B]lame" })
+			vim.keymap.set("n", "<leader>ghn", function()
+				gitSigns.next_hunk()
+			end, { desc = "[G]it [h]unk [n]ext" })
+			vim.keymap.set("n", "<leader>ghn", function()
+				gitSigns.next_hunk()
+			end, { desc = "[G]it [h]unk previous [N]" })
+			vim.keymap.set("n", "<leader>ghp", function()
+				gitSigns.preview_hunk()
+			end, { desc = "[G]it [h]unk [p]review" })
+			vim.keymap.set("n", "<leader>ghs", function()
+				gitSigns.preview_hunk()
+			end, { desc = "[G]it [h]unk [s]tage" })
 
 			-- VGit
 			local vgit = require("vgit")
