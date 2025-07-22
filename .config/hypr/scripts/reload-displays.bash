@@ -7,8 +7,10 @@
 hypr_dir="$HOME/.config/hypr"
 
 tmpfile=$(mktemp)
-mv $hypr_dir/monitors.conf "$tmpfile"
-touch $hypr_dir/monitors.conf
+# mv $hypr_dir/monitors.conf "$tmpfile"
+# touch $hypr_dir/monitors.conf
+cp $hypr_dir/monitors.conf "$tmpfile"
+echo " " > $hypr_dir/monitors.conf
 hyprctl reload
 mv "$tmpfile" $hypr_dir/monitors.conf
 hyprctl reload
@@ -24,6 +26,7 @@ rm "$tmpfile"
 # pkill -CONT Hyprland
 
 # exec $hypr_dir/scripts/lid-handling.bash check
-# pkill waybar & waybar & disown
+pkill waybar
+waybar & disown
 
 exit 0;
