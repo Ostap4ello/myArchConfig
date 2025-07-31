@@ -38,6 +38,7 @@
 .bash_history*
 .config/hypr/monitors.conf
 .config/hypr/hypr.session
+.config/hypr/hyprsession.conf
 .config/nvim/lazy-lock.json
 **/*.bak
 **/.*.bak
