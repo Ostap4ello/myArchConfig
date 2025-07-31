@@ -138,6 +138,17 @@ superumount() {
     fi
 }
 
+stmux() {
+    out="$(tmux ls 2>/dev/null | grep -Eo '^TEMP')"
+    if [ -z "$out" ]; then
+        tmux new-session -s TEMP \; choose-tree \;
+    else
+        tmux attach-session -t TEMP \; choose-tree \;
+    fi
+
+    tmux kill-session -t TEMP
+}
+
 ## Initializations
 # enable bash completion in interactive shells
 # https://github.com/scop/bash-completion
